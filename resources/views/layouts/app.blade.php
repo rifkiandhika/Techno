@@ -987,7 +987,7 @@
             <div class="col-lg-4 mb-5">
                 <h5>EQUALITY</h5>
                 <p class="footer-tagline">Wewangian berkualitas untuk setiap momen spesial Anda. Nikmati aroma tahan lama dengan bahan pilihan.</p>
-                <div class="mt-3">
+                {{-- <div class="mt-3">
                     @if($contactInfo && $contactInfo->instagram)
                     <a href="https://instagram.com/{{ $contactInfo->instagram }}" target="_blank" class="social-link d-inline-flex"><i class="fab fa-instagram"></i></a>
                     @endif
@@ -997,7 +997,7 @@
                     @if($contactInfo && $contactInfo->facebook)
                     <a href="https://facebook.com/{{ $contactInfo->facebook }}" target="_blank" class="social-link d-inline-flex"><i class="fab fa-facebook-f"></i></a>
                     @endif
-                </div>
+                </div> --}}
             </div>
             <div class="col-lg-2 col-6">
                 <h6>Navigate</h6>
