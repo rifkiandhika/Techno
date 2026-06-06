@@ -39,7 +39,7 @@
     <div class="row align-items-center g-5">
         <div class="col-lg-5" data-aos="fade-right">
             @if($aboutUs->founder_photo)
-            <img src="{{ asset('storage/' . $aboutUs->founder_photo) }}" class="img-fluid"
+            <img src="{{ asset($aboutUs->founder_photo) }}" class="img-fluid"
                  style="width:100%; aspect-ratio:3/4; object-fit:cover; display:block;" alt="Founder">
             @else
             <div style="background:var(--cream); aspect-ratio:3/4; display:flex; align-items:center; justify-content:center; border: 1px solid var(--rule);">

@@ -42,7 +42,7 @@
                     <div class="mb-3">
                         <label class="form-label">Current Founder Photo</label>
                         <div>
-                            <img src="{{ asset('storage/' . $aboutUs->founder_photo) }}" class="rounded" width="150">
+                            <img src="{{ asset($aboutUs->founder_photo) }}" class="rounded" width="150">
                         </div>
                     </div>
                     @endif

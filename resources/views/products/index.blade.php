@@ -132,7 +132,7 @@
                 <div class="col-md-4 col-6" data-aos="fade-up" data-aos-delay="{{ ($loop->index % 6) * 40 }}">
                     <div class="product-card">
                         <div class="img-wrap">
-                            <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->name }}">
+                            <img src="{{ asset($product->thumbnail) }}" alt="{{ $product->name }}">
                             @if($product->is_best_seller)
                                 <span class="card-badge">Best Seller</span>
                             @elseif($product->is_featured)

@@ -12,7 +12,7 @@
     <div class="swiper-wrapper">
         @foreach($banners as $banner)
         <div class="swiper-slide">
-            <div class="hero-slide" style="background-image: url('{{ asset('storage/' . $banner->image) }}');">
+            <div class="hero-slide" style="background-image: url('{{ asset($banner->image) }}');">
                 <div class="container px-4 px-lg-5">
                     <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
                         <span class="hero-eyebrow">EQUALITY Perfume</span>
@@ -99,7 +99,7 @@
             <div class="col-lg-3 col-md-4 col-6" data-aos="fade-up" data-aos-delay="{{ $loop->index * 60 }}">
                 <div class="product-card">
                     <div class="img-wrap">
-                        <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->name }}">
+                        <img src="{{ asset($product->thumbnail) }}" alt="{{ $product->name }}">
                         <span class="card-badge gold">Featured</span>
                         <div class="wishlist-btn"><i class="far fa-heart" style="font-size:0.85rem"></i></div>
                     </div>
@@ -139,7 +139,7 @@
             <div class="col-lg-3 col-md-4 col-6" data-aos="fade-up" data-aos-delay="{{ $loop->index * 60 }}">
                 <div class="product-card" style="background: white;">
                     <div class="img-wrap">
-                        <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->name }}">
+                        <img src="{{ asset($product->thumbnail) }}" alt="{{ $product->name }}">
                         <span class="card-badge">Best Seller</span>
                         <div class="wishlist-btn"><i class="far fa-heart" style="font-size:0.85rem"></i></div>
                     </div>
@@ -170,7 +170,7 @@
         <div class="row align-items-center g-5">
             <div class="col-lg-5" data-aos="fade-right">
                 @if($aboutUs->founder_photo)
-                <img src="{{ asset('storage/' . $aboutUs->founder_photo) }}" class="img-fluid" alt="Founder"
+                <img src="{{ asset($aboutUs->founder_photo) }}" class="img-fluid" alt="Founder"
                      style="width:100%; aspect-ratio:4/5; object-fit:cover; display:block;">
                 @else
                 <div style="background:var(--cream); aspect-ratio:4/5; display:flex; align-items:center; justify-content:center; border: 1px solid var(--rule);">
@@ -225,7 +225,7 @@
                     </div>
                     <div class="d-flex align-items-center gap-3">
                         @if($testimonial->photo)
-                        <img src="{{ asset('storage/' . $testimonial->photo) }}" width="40" height="40"
+                        <img src="{{ asset($testimonial->photo) }}" width="40" height="40"
                              style="border-radius:50%; object-fit:cover; border: 1px solid var(--rule);">
                         @else
                         <div style="width:40px;height:40px;border-radius:50%;background:var(--cream);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;">

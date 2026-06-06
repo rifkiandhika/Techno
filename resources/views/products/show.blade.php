@@ -34,12 +34,12 @@
             <div class="swiper product-gallery mb-3" style="border: 1px solid var(--rule);">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->name }}"
+                        <img src="{{ asset($product->thumbnail) }}" alt="{{ $product->name }}"
                              style="width:100%; aspect-ratio:1/1; object-fit:cover; display:block;">
                     </div>
                     @foreach($product->galleries as $gallery)
                     <div class="swiper-slide">
-                        <img src="{{ asset('storage/' . $gallery->image) }}" alt="{{ $product->name }}"
+                        <img src="{{ asset($gallery->image) }}" alt="{{ $product->name }}"
                              style="width:100%; aspect-ratio:1/1; object-fit:cover; display:block;">
                     </div>
                     @endforeach
@@ -52,13 +52,13 @@
             @if($product->galleries->count() > 0)
             <div class="row g-2">
                 <div class="col-3">
-                    <img src="{{ asset('storage/' . $product->thumbnail) }}"
+                    <img src="{{ asset($product->thumbnail) }}"
                          class="img-fluid gallery-thumb" style="aspect-ratio:1/1; object-fit:cover; width:100%;"
                          onclick="gallerySwiper.slideTo(0)">
                 </div>
                 @foreach($product->galleries->take(3) as $index => $gallery)
                 <div class="col-3">
-                    <img src="{{ asset('storage/' . $gallery->image) }}"
+                    <img src="{{ asset($gallery->image) }}"
                          class="img-fluid gallery-thumb" style="aspect-ratio:1/1; object-fit:cover; width:100%;"
                          onclick="gallerySwiper.slideTo({{ $index + 1 }})">
                 </div>
@@ -216,7 +216,7 @@
             <div class="col-lg-3 col-md-4 col-6">
                 <div class="product-card">
                     <div class="img-wrap">
-                        <img src="{{ asset('storage/' . $related->thumbnail) }}" alt="{{ $related->name }}"
+                        <img src="{{ asset($related->thumbnail) }}" alt="{{ $related->name }}"
                              style="height:220px; object-fit:cover;">
                     </div>
                     <div class="card-body">

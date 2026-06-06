@@ -32,7 +32,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            <img src="{{ asset('storage/' . $banner->image) }}" class="product-thumb" alt="{{ $banner->title }}" style="width: 80px; height: 50px; object-fit: cover;">
+                            <img src="{{ asset($banner->image) }}" class="product-thumb" alt="{{ $banner->title }}" style="width: 80px; height: 50px; object-fit: cover;">
                         </td>
                         <td><strong>{{ $banner->title }}</strong></td>
                         <td>{{ Str::limit($banner->subtitle, 40) }}</td>
@@ -144,7 +144,7 @@
                     @if($banner->image)
                     <div class="mb-3">
                         <label class="form-label">Current Image</label>
-                        <div><img src="{{ asset('storage/' . $banner->image) }}" width="150" class="rounded"></div>
+                        <div><img src="{{ asset($banner->image) }}" width="150" class="rounded"></div>
                     </div>
                     @endif
                     <div class="mb-3">

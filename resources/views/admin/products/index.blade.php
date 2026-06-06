@@ -34,7 +34,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            <img src="{{ asset('storage/' . $product->thumbnail) }}" class="product-thumb" alt="{{ $product->name }}">
+                            <img src="{{ asset($product->thumbnail) }}" class="product-thumb" alt="{{ $product->name }}">
                         </td>
                         <td><span class="fw-semibold">{{ $product->code }}</span></td>
                         <td>{{ $product->name }}</td>
