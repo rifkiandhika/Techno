@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
@@ -23,23 +22,26 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title'    => 'required|string|max:255',
             'subtitle' => 'nullable|string',
             'cta_text' => 'nullable|string',
             'cta_link' => 'nullable|url',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'order' => 'integer',
+            'image'    => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'order'    => 'integer',
         ]);
 
-        $imagePath = $request->file('image')->store('banners', 'public');
+        $file      = $request->file('image');
+        $filename  = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('images/banners'), $filename);
+        $imagePath = 'images/banners/' . $filename;
 
         Banner::create([
-            'title' => $request->title,
-            'subtitle' => $request->subtitle,
-            'cta_text' => $request->cta_text,
-            'cta_link' => $request->cta_link,
-            'image' => $imagePath,
-            'order' => $request->order ?? Banner::count() + 1,
+            'title'     => $request->title,
+            'subtitle'  => $request->subtitle,
+            'cta_text'  => $request->cta_text,
+            'cta_link'  => $request->cta_link,
+            'image'     => $imagePath,
+            'order'     => $request->order ?? Banner::count() + 1,
             'is_active' => $request->has('is_active'),
         ]);
 
@@ -54,26 +56,29 @@ class BannerController extends Controller
     public function update(Request $request, Banner $banner)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title'    => 'required|string|max:255',
             'subtitle' => 'nullable|string',
             'cta_text' => 'nullable|string',
             'cta_link' => 'nullable|url',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image'    => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $data = [
-            'title' => $request->title,
-            'subtitle' => $request->subtitle,
-            'cta_text' => $request->cta_text,
-            'cta_link' => $request->cta_link,
+            'title'     => $request->title,
+            'subtitle'  => $request->subtitle,
+            'cta_text'  => $request->cta_text,
+            'cta_link'  => $request->cta_link,
             'is_active' => $request->has('is_active'),
         ];
 
         if ($request->hasFile('image')) {
-            if ($banner->image && Storage::disk('public')->exists($banner->image)) {
-                Storage::disk('public')->delete($banner->image);
+            if ($banner->image && file_exists(public_path($banner->image))) {
+                @unlink(public_path($banner->image));
             }
-            $data['image'] = $request->file('image')->store('banners', 'public');
+            $file      = $request->file('image');
+            $filename  = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images/banners'), $filename);
+            $data['image'] = 'images/banners/' . $filename;
         }
 
         $banner->update($data);
@@ -83,12 +88,12 @@ class BannerController extends Controller
 
     public function destroy(Banner $banner)
     {
-        if ($banner->image && Storage::disk('public')->exists($banner->image)) {
-            Storage::disk('public')->delete($banner->image);
+        if ($banner->image && file_exists(public_path($banner->image))) {
+            @unlink(public_path($banner->image));
         }
-        
+
         $banner->delete();
-        
+
         return redirect()->route('admin.banners.index')->with('success', 'Banner berhasil dihapus');
     }
 
@@ -97,7 +102,7 @@ class BannerController extends Controller
         foreach ($request->orders as $id => $order) {
             Banner::where('id', $id)->update(['order' => $order]);
         }
-        
+
         return response()->json(['success' => true]);
     }
 }
